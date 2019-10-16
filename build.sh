@@ -3,6 +3,7 @@
 CUR_DIR=$(pwd)
 DATA_DIR="${CUR_DIR}/data"
 SRC_DIR="${CUR_DIR}/src"
+mkdir -p "${DATA_DIR}"
 pushd "${DATA_DIR}"
 wget https://www.gutenberg.org/files/2600/2600-0.txt -O tolstoy.txt
 wget https://ocw.mit.edu/ans7870/6/6.006/s08/lecturenotes/files/t8.shakespeare.txt -O shakespeare.txt
