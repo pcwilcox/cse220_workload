@@ -6,7 +6,7 @@ cd .. || exit
 
 ESESC_BIN=${1:-../main/esesc}
 export ESESC_ReportFile="220_project2_report"
-export ESESC_BenchName="./workload/jparse.rv ./workload/input.txt"
+export ESESC_BenchName="./workload/jparse.riscv64 ./workload/input.txt"
 if [ -f $ESESC_BIN ]; then
   $ESESC_BIN
 else

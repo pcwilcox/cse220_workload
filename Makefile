@@ -7,24 +7,27 @@ OBJS   = $(SRCS:.c=.o)
 INPUT  = input.txt
 DEPS   = $(SRCS:.c=.d)
 
-all: clean build test
 
 default: build
 
+all: build test clean
+
 clean:
-	-rm $(EXEC)
 	-rm $(OBJS)
 	-rm $(DEPS)
 
 build: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@.rv $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) -o $@.riscv64 $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -MD -o $@ $<
 
-test: $(EXEC)
+test: $(EXEC) clean
 	-test.sh
 
-.PHONY: clean default build test all
+spotless:
+	-rm $(EXEC).riscv64
+
+.PHONY: clean default build test all spotless
