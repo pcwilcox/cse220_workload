@@ -28,4 +28,3 @@ test: $(EXEC)
 	-test.sh
 
 .PHONY: clean default build test all
-
