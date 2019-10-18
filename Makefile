@@ -19,12 +19,13 @@ clean:
 build: $(EXEC)
 
 $(EXEC): $(OBJS)
-	$(CC) $(LDFLAGS) -o $@ $(OBJS)
+	$(CC) $(LDFLAGS) -o $@.rv $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -MD -o $@ $<
 
 test: $(EXEC)
-	-echo $(INPUT) | $(EXEC)
+	-test.sh
 
 .PHONY: clean default build test all
+
