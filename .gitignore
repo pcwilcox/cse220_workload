@@ -2,3 +2,4 @@
 *.rv
 *.riscv64
 genann
+workload

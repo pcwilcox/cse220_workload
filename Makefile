@@ -1,26 +1,17 @@
-CC = riscv64-linux-gnu-gcc
+CXX = riscv64-linux-gnu-g++
 CFLAGS = -static -Wall -Wshadow -O0 -g
-LDLIBS = -lm
-SRCS = genann.c genann.h main.c
-EXEC = genann
+LDLIBS = #-lm
+SRCS = main.c edlib.cpp edlib.h
+EXEC = workload
 
 default: build
 
 all: clean build test
 
-sigmoid: CFLAGS += -Dgenann_act=genann_act_sigmoid_cached
-sigmoid: all
-
-threshold: CFLAGS += -Dgenann_act=genann_act_threshold
-threshold: all
-
-linear: CFLAGS += -Dgenann_act=genann_act_linear
-linear: all
-
 build: $(EXEC)
 
 $(EXEC):
-	$(CC) $(CFLAGS) -o $@ $(SRCS) $(LDLIBS)
+	$(CXX) $(CFLAGS) -o $@ $(SRCS) $(LDLIBS)
 
 test: $(EXEC)
 	./test.sh
@@ -28,4 +19,4 @@ test: $(EXEC)
 clean:
 	$(RM) *.o
 
-.PHONY: sigmoid threshold linear clean test all build
+.PHONY: clean test all build
