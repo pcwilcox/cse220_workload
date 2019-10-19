@@ -1,33 +1,31 @@
-CC     = riscv64-linux-gnu-gcc
-SRCS   = cJSON.c main.c
-HDRS   = cJSON.h
-CFLAGS = -static -Werror -O0 -Wall -Wpedantic
-EXEC   = jparse
-OBJS   = $(SRCS:.c=.o)
-INPUT  = input.txt
-DEPS   = $(SRCS:.c=.d)
-
+CC = riscv64-linux-gnu-gcc
+CFLAGS = -static -Wall -Wshadow -O0 -g
+LDLIBS = -lm
+SRCS = genann.c genann.h main.c
+EXEC = genann
 
 default: build
 
-all: build test clean
+all: clean build test
 
-clean:
-	-rm $(OBJS)
-	-rm $(DEPS)
+sigmoid: CFLAGS += -Dgenann_act=genann_act_sigmoid_cached
+sigmoid: all
+
+threshold: CFLAGS += -Dgenann_act=genann_act_threshold
+threshold: all
+
+linear: CFLAGS += -Dgenann_act=genann_act_linear
+linear: all
 
 build: $(EXEC)
 
-$(EXEC): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $@.riscv64 $(OBJS)
+$(EXEC):
+	$(CC) $(CFLAGS) -o $@ $(SRCS) $(LDLIBS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -MD -o $@ $<
+test: $(EXEC)
+	./test.sh
 
-test: $(EXEC) clean
-	-test.sh
+clean:
+	$(RM) *.o
 
-spotless:
-	-rm $(EXEC).riscv64
-
-.PHONY: clean default build test all spotless
+.PHONY: sigmoid threshold linear clean test all build

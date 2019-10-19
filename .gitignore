@@ -1,3 +1,4 @@
 *.d
 *.rv
 *.riscv64
+genann
