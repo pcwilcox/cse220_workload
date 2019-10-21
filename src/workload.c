@@ -29,8 +29,8 @@ main(int argc, char **argv)
         }
         fclose(f);
     }
-    printf("All done\n");
     trie_free(trie);
+    printf("All done\n");
     return 0;
 }
 
