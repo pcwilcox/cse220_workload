@@ -3,3 +3,7 @@
 *.riscv64
 genann
 workload
+c-algorithms/*
+data/shakespear.txt
+data/shakespeare.txt
+data/tolstoy.txt

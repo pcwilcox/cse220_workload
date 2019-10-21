@@ -13,4 +13,4 @@ cp ../c-algorithms/src/trie.c .
 cp ../c-algorithms/src/trie.h .
 make
 popd
-cp "${SRC_DIR}/workload" .
+mv "${SRC_DIR}/workload" .
