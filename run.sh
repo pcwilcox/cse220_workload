@@ -3,11 +3,13 @@
 #PBS -M renau@ucsc.edu
 
 CUR_DIR=$(pwd)
+CONF_FILE="${CUR_DIR}/conf/simu.conf.apache.orig"
 DATA_DIR="${CUR_DIR}/data"
 RUN_DIR="/home/cse220/build/release/run"
 DATA1="${DATA_DIR}/shakespeare.txt"
 DATA2="${DATA_DIR}/tolstoy.txt"
 
+cp "${CONF_FILE}" "${RUN_DIR}/simu.conf.apache"
 pushd "${RUN_DIR}"
 ESESC_BIN=${1:-../main/esesc}
 export ESESC_ReportFile="220_project2_report"

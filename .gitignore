@@ -7,3 +7,5 @@ c-algorithms/*
 data/shakespear.txt
 data/shakespeare.txt
 data/tolstoy.txt
+src/trie.c
+src/trie.h
